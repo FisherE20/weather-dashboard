@@ -17,7 +17,7 @@
             <input type="text" id="search" name="searchbycity">
             <button class="search">Search</button>
            <!-- This row will handle all of the retrieved cities -->
-           <div class="row">
+           <div id="city-list" class="row">
             <div class="col-sm-3">
            <br />
  
@@ -25,7 +25,7 @@
          </div>
         </nav>
         
-        <article id="city">
+        <article id="cities">
           <h1 class="city"></h1>
           <p class="pOne">Temperature:</p>
           <p class="pTwo">Humidity:</p>
@@ -34,8 +34,10 @@
         </article>
 
         <article id="forcast">
-            <h1 class="Forecast">5 day Forecast"</h1>
-            
+            <h1 class="Forecast">5 day Forecast:</h1>
+            <p id="futureCast">
+
+            </p>
           </article>
       </section>
       
@@ -44,8 +46,8 @@
       </footer>
 
     
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+    <script src="./script.js"></script>
   </body>
 </html>

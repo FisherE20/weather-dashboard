@@ -1,14 +1,12 @@
-const notificationElement = document.querySelector(".notification");
-const iconElement = document.querySelector(".weather-icon");
-const tempElement = document.querySelector(".temperature-value p");
-const locationElement = document.querySelector(".location p");
+$(".search").on("click", function(event) {
 
-// This is our API key
+  // This is our API key
 var APIKey = "b6c1420f672427cac6dc4bc3480d4d03";
+var city = $("#search").val().trim();
 
 // Here we are building the URL we need to query the database
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
-  "q=city&appid=" + APIKey;
+  "q="+ city +"&appid=" + APIKey;
 console.log(queryURL);
 
 $.ajax({
@@ -24,40 +22,51 @@ $.ajax({
  // Log the resulting object
  console.log(response);
 
- $("#weather-container").text(JSON.stringify(response));
+//  // Grab text the user typed into the search input, add to the queryParams object
+//  queryParams.q = $("#search")
+//  .val()
+//  .trim();
+
+
+ $("#article").text(JSON.stringify(response));
   
-  });
 
 // storing the data from the AJAX request in the results variable
 var results = response.Data;
 
 // Looping through each result item
-for (var i = 0; i < results.length; i++) {
+for (var i = 0; i < results.city.length; i++) {
 
 // Creating and storing a div tag
-   var weatherContainer = $("<div>"); 
+   var weatherContainer = $("<article>");
+
+   $("#city-list").prepend(row); 
+
+//Creating an H1 tag for the city searched
+   var city= $("<h1>").text(response.city);
+   article.append(h1);
 
  // Creating a paragraph tag with the result item's temperature
-var pOne = $("<p>").text("Temperature: " + results[i].temperature);
-weatherContainerDiv.append(pOne);
+var pOne = $("<p>").text(response.temperature);
+article.append(pOne);
 
 // Convert the temp to fahrenheit
 var tempF = (response.main.temp - 273.15) * 1.80 + 32;
 
 // add temp content to html
-$(".temp").text("Temperature (K) " + response.main.temp);
+$(".temp").text(response.main.temp);
 $(".tempF").text("Temperature (F) " + tempF.toFixed(2));
 
 // Creating a paragraph tag with the result item's humidity
-  var pTwo = $("<p>").text("Humidity: " + results[i].humidity);
+  var pTwo = $("<p>").text(response.humidity);
   weatherContainerDiv.append(pTwo);
 
 // Creating a paragraph tag with the result item's wind speed
-  var pThree = $("<p>").text("Wind Speed: " + results[i].wind.speed);
+  var pThree = $("<p>").text(response.wind.speed);
   weatherContainerDiv.append(pThree);  
 
 // Creating a paragraph tag with the result item's uv index
-  var p = $("<p>").text("UV Index: " + results[i].uv.index);
+  var p = $("<p>").text(response.uv.index);
 
 // Creating and storing an image tag
 //    var weatherImage = $("<img>");
@@ -67,13 +76,33 @@ $(".tempF").text("Temperature (F) " + tempF.toFixed(2));
 
 // Appending the paragraph and image tag to the weatherContainerDiv
 
-weatherContainerDiv.append(p);
+//weatherContainerDiv.append(p);
 // weatherContainerDiv.append(weatherImage);
 
-// Prependng the weatherContainerDiv to the HTML page in the "#gifs-appear-here" div
-//$("#gifs-appear-here").prepend(weatherContainerDiv);
-}
 
+};
+});
+
+    let lat = response.coord.lat
+    let lon = response.coord.lon
+    console.log(lat)
+   
+    let queryURLUv = "http://api.openweathermap.org/data/2.5/uvi/forecast?appid="+ apiKey + "&lat={lat}&lon={lon}&cnt={cnt}"
+    
+    let queryURLForecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid="+ apiKey
+
+    $.ajax({
+      url: queryURLForecast,
+      method: "GET"
+
+  }).then(function(response){
+      console.log(queryURLForecast)
+      console.log(response)
+  })
+  // Prependng the forecastArticle to the HTML page in the "#gifs-appear-here" div
+  $("#futureCast").prepend(forecastArticle);
+});   
 // function celsiusToFahrenheit(temperature){
 //      return (temperature * 9/5) + 32;
-// };
+
+
