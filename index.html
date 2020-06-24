@@ -1,1 +1,54 @@
-let queryURLUv ="http://api.openweathermap.org/data/2.5/uvi/forecast?appid=" + APIKey +"&lat={lat}&lon={lon}&cnt={cnt}";
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+        <h2>Weather Dashboard</h2>
+      </header>
+      
+      <section>
+        <nav>
+            <label for="search">Search by City:</label><br>
+            <input type="text" id="search" name="searchbycity">
+            <button class="search">Search</button>
+           <!-- This row will handle all of the retrieved cities -->
+           <div id="city-list" class="row">
+            <div class="col-sm-3">
+           <br />
+ 
+        
+         </div>
+        </nav>
+        
+        <article id="cities">
+          <h1 class="city"></h1>
+          <p class="icon"><img src=""></p>
+          <p class="pOne">Temperature:</p>
+          <p class="pTwo">Humidity:</p>
+          <p class="pThree">Wind Speed:</p>
+          <p class="pFour">UV Index:</p>
+        </article>
+
+        <article id="forcast">
+            <h1 class="Forecast">5 day Forecast:</h1>
+            <p id="futureCast">
+
+            </p>
+          </article>
+      </section>
+      
+      <footer>
+        <p>Made by FisherE20</p>
+      </footer>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+    <script src="./script.js"></script>
+  </body>
+</html>

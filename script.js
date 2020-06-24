@@ -1,3 +1,6 @@
+ $(".search").on("click", function(){
+
+
  // This is our API key
  var APIKey = "b6c1420f672427cac6dc4bc3480d4d03";
 
@@ -29,7 +32,7 @@
 
      // add temp content to html
      $(".pOne").text("Temperature (K) " + response.main.temp);
-    //  $(".tempF").text("Temperature (F) " + tempF.toFixed(2));
+     $(".pOne").text("Temperature (F) " + tempF.toFixed(2));
 
     var APIKey = "b6c1420f672427cac6dc4bc3480d4d03";
 
@@ -42,8 +45,10 @@ $.ajax({
     $(".pFour").text("UV Index:" + response.current.uvi);
      
 });
-   });
 
+// $(".futurecast").text();
+   });
+  })
 //      // Log the data in the console as well
 //      console.log("Wind Speed: " + response.wind.speed);
 //      console.log("Humidity: " + response.main.humidity);
