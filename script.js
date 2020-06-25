@@ -58,13 +58,33 @@ $(".search").on("click", function () {
          $(".pFour").text("UV Index:" + res.current.uvi);
       });
       
+      var APIKey = "b6c1420f672427cac6dc4bc3480d4d03";
+
+      let queryURLFuture = "https://api.openweathermap.org/data/2.5/onecall?lat="+ lat +"&lon=" + lon +
+      "&exclude=hourly,daily&appid=" 
+      + APIKey;
       
-      
-      // $(".futurecast").text();
+
+      $.ajax({
+        url: queryURLFuture,
+        method: "GET",
+      }).then(function (res) {
+        console.log(res);
+         lat= res.lat;
+         lon= res.lon;
+         daily= res.daily;
+
+        //  var i;
+        //  for(i = 0; i < daily.length; i++){
+        //    text += daily[i];
+        //  };
+
+      $("#futurecast").text("<p>" + daily[0] + "<p>");
+      $("#futurecast").text("<p>" + daily[1] + "<p>");
+      $("#futurecast").text("<p>" + daily[2] + "<p>");
+      $("#futurecast").text("<p>" + daily[3] + "<p>");
+      $("#futurecast").text("<p>" + daily[4] + "<p>");
     });
 });
 
-//      // Log the data in the console as well
-//      console.log("Wind Speed: " + response.wind.speed);
-//      console.log("Humidity: " + response.main.humidity);
-//      console.log("Temperature (F): " + tempF);
+});
