@@ -23,7 +23,7 @@ $(".search").on("click", function () {
      // Log the resulting object
       console.log(response);
 
-      $("ul").prepend("<li>" + city +"</li>");
+      $("ul").prepend(`<li>${city}</li>`);
 
       // Transfer content to HTML
       $(".city").html("<h1>" + response.name + "</h1>");
@@ -38,22 +38,32 @@ $(".search").on("click", function () {
       $(".pOne").text("Temperature (F) " + tempF.toFixed(2));
 
       var APIKey = "b6c1420f672427cac6dc4bc3480d4d03";
+      var lon= response.coord.lon;
+      var lat= response.coord.lat;
 
-      let queryURLUv =
-        "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=" +
+      
+        let queryURLUv =
+        "https://api.openweathermap.org/data/2.5/onecall?appid=" +
         APIKey +
-        "&lat={lat}&lon={lon}&cnt={cnt}";
-
+        "&lat=" + lat + "&lon=" + lon;
+      
+    
       $.ajax({
         url: queryURLUv,
         method: "GET",
-      }).then(function (response) {
-        $(".pFour").text("UV Index:" + response.current.uvi);
+      }).then(function (res) {
+        console.log(res);
+         lat= res.lat;
+         lon= res.lon;
+         $(".pFour").text("UV Index:" + res.current.uvi);
       });
-
+      
+      
+      
       // $(".futurecast").text();
     });
 });
+
 //      // Log the data in the console as well
 //      console.log("Wind Speed: " + response.wind.speed);
 //      console.log("Humidity: " + response.main.humidity);
